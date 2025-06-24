@@ -122,7 +122,7 @@ def main():
         screen.blit(bg_img, [0, 0])
 
         for bomb in bombs:
-            if bird.rct.colliderect(bomb.rct):
+            if bomb is not None and bird.rct.colliderect(bomb.rct):
                 bird.change_img(8, screen)
                 fonto = pg.font.Font(None, 80)
                 txt = fonto.render("Game Over", True, (255, 0, 0))
@@ -133,7 +133,7 @@ def main():
 
         for beam in beams:
             for i, bomb in enumerate(bombs):
-                if beam.rct.colliderect(bomb.rct):
+                if bomb is not None and beam.rct.colliderect(bomb.rct):
                     beams.remove(beam)
                     bombs[i] = None
                     bird.change_img(6, screen)
